@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PartPicker from './PartPicker.js';
+import Feature from './Feature.js';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
-describe('PartPicker', () => {
-   it('should render without crashing', () => {
-       const div = document.createElement('div');
-       ReactDOM.render(<PartPicker/>, div);
-       ReactDOM.unmountComponentAtNode(div);
-   }); 
+describe('Feature', () => {
+    it('renders empty', () => {
+      
+    });
 });

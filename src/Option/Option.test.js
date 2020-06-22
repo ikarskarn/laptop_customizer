@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Part from './Part.js';
+import Option from './Option.js';
 
-describe('Part', () => {
-   it('should render without crashing', () => {
-       const div = document.createElement('div');
-       ReactDOM.render(<Part/>, div);
-       ReactDOM.unmountComponentAtNode(div);
-   }); 
+describe('Option', () => {
+    it('renders empty', () => {
+      
+    });
 });

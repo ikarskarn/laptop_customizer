@@ -1,19 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import FeatureList from './FeatureList/FeatureList.js';
 import Summary from './Summary/Summary.js';
-// Normalizes string as a slug - a string that is safe to use
-// in both URLs and html attributes
-import slugify from 'slugify';
 
-// This object will allow us to
-// easily convert numbers into US dollar values
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-	style: 'currency',
-	  currency: 'USD'
-});
-
-class App extends Component {
+class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -39,8 +29,6 @@ class App extends Component {
 	}
 	
 	updateFeature(feature, newValue) {
-		console.log('updateFeature Feature: ' + feature);
-		console.log('updateFeature newValue: ' + newValue);
 		const selected = Object.assign({}, this.state.selected);
 		selected[feature] = newValue;
 		this.setState({
@@ -49,37 +37,6 @@ class App extends Component {
 	};
 
 	render() {
-		const features = Object.keys(this.props.features).map((feature, idx) => {
-			const featureHash = feature + '-' + idx;
-			const options = this.props.features[feature].map(item => {
-				const itemHash = slugify(JSON.stringify(item));	
-				return (
-					<div key={itemHash} className="feature__item">
-						<input
-							type="radio"
-							id={itemHash}
-							className="feature__option"
-							name={slugify(feature)}
-							checked={item.name === this.state.selected[feature].name}
-							onChange={e => this.updateFeature(feature, item)}
-						/>
-						<label htmlFor={itemHash} className="feature__label">
-							{item.name} ({USCurrencyFormat.format(item.cost)})
-						</label>
-					</div>
-				);
-			});
-
-			return (
-				<fieldset className="feature" key={featureHash}>
-					<legend className="feature__name">
-						<h3>{feature}</h3>
-					</legend>
-					{options}
-				</fieldset>
-			);
-		});
-
 		return (
 			<div className="App">
 				<header>
@@ -97,25 +54,9 @@ class App extends Component {
 						selected={this.state.selected}
 					/>
 				</main>
-				<div>
-				
-				</div>
 			</div>
 		);
 	}
 }
 
 export default App;
-
-/*
-<div>
-	<FeatureList
-		selected={this.state.selected}
-		features={this.props.features}
-		updateFeature={(option, newValue) => this.updateFeature(option, newValue)}
-	/>
-	<Summary
-		selected={this.state.selected}
-	/>
-</div>
-*/
