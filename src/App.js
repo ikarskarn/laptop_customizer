@@ -46,7 +46,6 @@ class App extends React.Component {
 				<main>
 					<FeatureList
 						selected={this.state.selected}
-						features={this.props.features}
 						updateFeature={(option, newValue) => this.updateFeature(option, newValue)}
 					/>
 

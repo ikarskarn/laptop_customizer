@@ -1,30 +1,35 @@
 import React from 'react';
 import './Option.css';
-import slugify from 'slugify';
 
 class Option extends React.Component {
     render() {
+        
         const USCurrencyFormat = new Intl.NumberFormat('en-US', {
             style: 'currency',
               currency: 'USD'
         });
-        const item = this.props.part;
-        const itemHash = slugify(JSON.stringify(item));	
         
-        return (
-            <div className='feature__item'>
+        const options = this.props.feature;
+        const newParts = options.map((option, idx) =>
+            <div key={`${option.name}_${idx}`} className='feature__item'>
                 <input
                     type="radio"
-                    id={itemHash}
+                    id={`${option.name}_${idx}`}
                     className="feature__option"
-                    name={this.props.feature}
-                    checked={this.props.part.name === this.props.selected.name}
-                    onChange={e => this.props.updateFeature(this.props.feature, this.props.part)}
-                />
-                <label htmlFor={itemHash} className="feature__label">
-                    {this.props.part.name} ({USCurrencyFormat.format(this.props.part.cost)})
-                </label>
-            </div>
+                    name={JSON.stringify(option.name)}
+                    checked={option.name === this.props.selected.name}
+                    onChange={e => this.props.updateFeature(this.props.featureType, option)}
+            />
+            <label htmlFor={`${option.name}_${idx}`} className="feature__label">
+                {option.name} ({USCurrencyFormat.format(option.cost)})
+            </label>
+        </div>
+        ); 
+        
+        return (
+            <>
+                {newParts}
+            </>
         )
     }
 }

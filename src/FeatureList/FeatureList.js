@@ -9,7 +9,6 @@ class FeatureList extends React.Component {
                 <h2>Customize Your Laptop</h2>
                 <Feature 
                     selected={this.props.selected}
-                    features={this.props.features}
                     updateFeature={this.props.updateFeature}
                 />
             </form>

@@ -3,6 +3,7 @@ import './Total.css';
 
 class Total extends React.Component {
     render() {
+        const selected = this.props.selected;
         const handlePrice = (props) => {
             let sum = props.reduce(function(a,b){
                 return a+b;
@@ -20,7 +21,7 @@ class Total extends React.Component {
                     Total
                 </div>
                 <div className="summary__total__value">
-                    {handlePrice(this.props.prices)}
+                    {handlePrice([selected.Processor.cost, selected.OperatingSystem.cost, selected.VideoCard.cost, selected.Display.cost])}
                 </div>
             </div>
         );

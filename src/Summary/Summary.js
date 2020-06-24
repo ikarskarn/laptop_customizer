@@ -5,22 +5,23 @@ import './Summary.css';
 
 class Summary extends React.Component {
     render() {
-        const store = this.props.selected;
-        const prices = [
-            store.Processor.cost,
-            store.OperatingSystem.cost,
-            store.VideoCard.cost,
-            store.Display.cost
-        ];
+        const selected = this.props.selected;
+        const features = Object.keys(selected);
+        const list = features.map((feature, idx) => 
+            <Price
+                key={`${feature}_${idx}`}
+                optionLabel={feature}
+                optionValue={selected[feature].name}
+                optionCost={selected[feature].cost}                   
+            />
+        );
         
         return(
             <section className="main__summary">
                 <h2>Your cart</h2>
-                <Price 
-                    selected={this.props.selected}
-                />
+                {list}
                 <Total
-                    prices={prices}
+                    selected={selected}
                 />
             </section>
         );
